@@ -16,9 +16,9 @@ app.get("/api/users", (req, res) => {
                 return;
             }
 
-            const data = response.body;
-            const apiData = JSON.parse(data);
-            console.log(apiData);
+            // const data = response.body;
+            // const apiData = JSON.parse(data);
+            // console.log(apiData);
 
             if (response.statusCode == 200) {
                 console.log('success');
