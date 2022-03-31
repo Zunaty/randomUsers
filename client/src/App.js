@@ -8,8 +8,7 @@ import {
   AccordionSummary, 
   Typography,
   Avatar,
-  Stack,
-  Paper
+  Stack
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -20,6 +19,12 @@ function App() {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  const handleDOB = (date) => {
+    let shortDate = date.slice(0, 10);
+    let spacedDate = shortDate.replace(/-/g, " ")
+    return spacedDate;
+  }
 
   async function userDataFetch() {
     // sending a request for the user data, since the api is limited to a max of 5000 per pull,
@@ -101,13 +106,13 @@ function App() {
                   sx={{width: 120, height: 120}}
                 />
                 <Typography>
-                  {user.location.street.name + ", " + user.location.postcode + ", " + user.location.city + ", " + user.location.country}
+                  {user.location.street.number + " " + user.location.street.name + ", " + user.location.postcode + ", " + user.location.city + ", " + user.location.country}
                   <br />
                   {"Cell: " + user.cell}
                   <br />
                   {"Phone: " + user.phone}
                   <br />
-                  {"D.O.B. : " + user.dob.date}
+                  {"D.O.B. : " + handleDOB(user.dob.date)}
                 </Typography>
               </Stack>
             </AccordionDetails>
