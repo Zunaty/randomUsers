@@ -8,7 +8,7 @@ app.get("/api/users", (req, res) => {
     request(
         {
             method: 'GET',
-            uri: 'https://randomuser.me/api/?results=20'
+            uri: 'https://randomuser.me/api/?results=2000'
         },
         function (error, response, body) {
             if (error) {

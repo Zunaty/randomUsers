@@ -16,10 +16,12 @@ function App() {
   const [data, setData] = useState([]);
   const [expanded, setExpanded] = useState(false);
 
+  // handles expansion of accordion
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  // changes the date appearance from the database
   const handleDOB = (date) => {
     let shortDate = date.slice(0, 10);
     let spacedDate = shortDate.replace(/-/g, " ")
@@ -68,6 +70,7 @@ function App() {
           Random User List
         </h1>
 
+        {/* checking whether the data has come in yet */}
         <div>
           {!data.length > 0 ? "Loading..." : <span className='arrow arrowDown'></span>}
         </div>
@@ -79,6 +82,7 @@ function App() {
             expanded={expanded === `panel${index}`}
             onChange={handleChange(`panel${index}`)}
           >
+            {/* accordion bar title*/}
             <AccordionSummary
               expandIcon={<ExpandMoreIcon/>}
               aria-controls={`panel${index}bh-content`}
@@ -95,16 +99,20 @@ function App() {
               </Typography>
             </AccordionSummary>
 
+            {/* expanded accordion info */}
             <AccordionDetails>
               <Stack 
                 direction="row" 
                 spacing={4}
               >
+                {/* user picture */}
                 <Avatar
                   alt={user.name.first + " " + user.name.last}
                   src={user.picture.large}
                   sx={{width: 120, height: 120}}
                 />
+
+                {/* user information */}
                 <Typography>
                   {user.location.street.number + " " + user.location.street.name + ", " + user.location.postcode + ", " + user.location.city + ", " + user.location.country}
                   <br />
